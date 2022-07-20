@@ -10,7 +10,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
   }
 }
 
-const Home: NextPage = (props) => {
+const Home: NextPage = (props: any) => {
   return (
     <div className={styles.container}>
       <Head>
