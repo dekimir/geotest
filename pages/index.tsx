@@ -3,7 +3,13 @@ import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 
-const Home: NextPage = () => {
+export async function getServerSideProps({ req }) {
+  return {
+    props: { ip: req.socket.localAddress },
+  }
+}
+
+const Home: NextPage = (props) => {
   return (
     <div className={styles.container}>
       <Head>
@@ -14,7 +20,7 @@ const Home: NextPage = () => {
 
       <main className={styles.main}>
         <h1 className={styles.title}>
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
+          Welcome to <a href="https://nextjs.org">Next.js!</a> IP: ${props.ip}
         </h1>
 
         <p className={styles.description}>
