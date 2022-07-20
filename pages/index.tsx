@@ -1,11 +1,12 @@
 import type { NextPage } from 'next'
+import { DocumentContext } from 'next/document'
 import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 
-export async function getServerSideProps({ req }) {
+export async function getServerSideProps(ctx: DocumentContext) {
   return {
-    props: { ip: req.socket.localAddress },
+    props: { ip: ctx.req?.socket.localAddress },
   }
 }
 
