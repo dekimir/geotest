@@ -6,7 +6,7 @@ import { GetServerSideProps } from 'next'
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
   return {
-    props: { ip: ctx.req?.socket.localAddress },
+    props: { ip: ctx.req?.socket.remoteAddress },
   }
 }
 
