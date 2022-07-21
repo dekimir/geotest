@@ -19,7 +19,7 @@ const Home: NextPage = (props: any) => {
   return (
     <div className={styles.container}>
       <Head>
-        <title>Find server's IP and geo</title>
+        <title>Find server&apos;s IP and geo</title>
         <meta name="description" content="A demo app to discover the location of the NextJS frontend server" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
