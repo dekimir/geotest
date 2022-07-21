@@ -1,12 +1,17 @@
-import type { NextPage } from 'next'
+import type { NextApiRequest, NextPage } from 'next'
 import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 import { GetServerSideProps } from 'next'
+import { NextRequest } from 'next/server'
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
   return {
-    props: { ip: ctx.req?.socket.remoteAddress },
+    props: { 
+      local: ctx.req?.socket.localAddress, 
+      remote: ctx.req?.socket.remoteAddress,
+      query: ctx.query,
+    },
   }
 }
 
@@ -21,7 +26,7 @@ const Home: NextPage = (props: any) => {
 
       <main className={styles.main}>
         <h1 className={styles.title}>
-          Welcome to <a href="https://nextjs.org">Next.js!</a> IP: ${props.ip}
+          {JSON.stringify(props)}
         </h1>
 
         <p className={styles.description}>
