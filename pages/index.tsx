@@ -31,10 +31,8 @@ const Home: NextPage = (props: any) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className={styles.main}>
-        <p className={styles.code}>
-          {JSON.stringify(props)}
-        </p>
+      <main className={styles.code}>
+        <pre>{JSON.stringify(props, null, 2)}</pre>
       </main>
     </div>
   )
