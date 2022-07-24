@@ -20,7 +20,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
       endpoint,
       status: response.status,
       resp: await response.text() ?? '',
-      duration: ((end - start) / BigInt(1000000)).toString() + 'ms',
+      chiseld_latency: ((end - start) / BigInt(1000000)).toString() + 'ms',
     },
   }
 }
