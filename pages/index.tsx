@@ -14,7 +14,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
     props: { 
       local: ctx.req?.socket.localAddress, 
       remote: ctx.req?.socket.remoteAddress,
-      query: ctx.query,
+      geo: JSON.parse(ctx.query['geo'] as string),
       status: response.status,
       resp: await response.text() ?? '',
       duration: ((end - start) / BigInt(1000000)).toString() + 'ms',
