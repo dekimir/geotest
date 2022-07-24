@@ -7,14 +7,17 @@ import { NextRequest } from 'next/server'
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const start = process.hrtime.bigint()
-  // TODO: pick this URL dynamically, based on geolocation.
-  const response = await fetch('https://yyz-dekimir.chiselstrike.io/main/hello')
+  const geo = JSON.parse(ctx.query['geo'] as string)
+  const chiseloc = ['Belgrade', 'Helsinki'].includes(geo.city) ? 'abc' : 'yyz'
+  const endpoint = `https://${chiseloc}-dekimir.chiselstrike.io/main/hello`
+  const response = await fetch(endpoint)
   const end = process.hrtime.bigint()
   return {
     props: { 
       local: ctx.req?.socket.localAddress, 
       remote: ctx.req?.socket.remoteAddress,
-      geo: JSON.parse(ctx.query['geo'] as string),
+      geo,
+      endpoint,
       status: response.status,
       resp: await response.text() ?? '',
       duration: ((end - start) / BigInt(1000000)).toString() + 'ms',
