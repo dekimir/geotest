@@ -4,7 +4,8 @@ import sqlite3 from 'sqlite3'
 import { open } from 'sqlite'
 
 type Data = {
-  name: string
+    name: string,
+    d: any[]
 }
 
 export default function handler(
@@ -15,11 +16,9 @@ export default function handler(
         filename: '/tmp/database.db',
         driver: sqlite3.Database
     }).then((db) => {
-        db.exec('CREATE TABLE IF NOT EXISTS tbl (col TEXT)')
-            .then(() => {
-                db.exec('INSERT INTO tbl VALUES ("test")')
-            }).then(() => {
-                res.status(200).json({ name: 'John Doe' })
+        db.all('SELECT col FROM tbl')
+            .then((d) => {
+                res.status(200).json({ name: 'John Doe', d })
             })
     })
 }
